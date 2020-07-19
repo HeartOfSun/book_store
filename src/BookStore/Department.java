@@ -41,7 +41,6 @@ public class Department { //Отдел
         Push(new Book(Name, Author, Quantity));
     }
 
-
     public boolean BookIsExists(String Name) {
         for (int i = 0; i < ElementsCount; ++i) {
             if (Books[i].GetBookName().equals(Name)) {
@@ -50,19 +49,19 @@ public class Department { //Отдел
         }
         return false; //Нет искомого элемента в очереди
     }
-    
+
     public int AmountBooksInDepartment() { //Подсчет суммарного числа книг в отделе
         int result = 0;
-        for (int i = 0; i < ElementsCount; ++i)  {
+        for (int i = 0; i < ElementsCount; ++i) {
             result = result + Books[i].GetBookQuantity(); //Суммируем количество
         }
         return result; //Возвращаем результат
     }
 
     public void Push(Book NewElement) { //Положить в очередь
-        if (ElementsCount == Books.length-1) { //Если массив заполнен, расширяем его
+        if (ElementsCount == Books.length - 1) { //Если массив заполнен, расширяем его
             Book[] newArray = Arrays.copyOf(Books, Books.length * 2); //Создаём новый массив в два раза больше размером, и копируем старый массив в него
-            Books= newArray;
+            Books = newArray;
         }
 
         Books[ElementsCount] = NewElement; //Добавляем новый элемент
@@ -87,5 +86,5 @@ public class Department { //Отдел
     public int Size() { //Размер очереди
         return ElementsCount;
     }
-    
+
 }

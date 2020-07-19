@@ -15,22 +15,23 @@ public class NewBookDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form NewBookDialog
+     *
      * @param DepartmentToAdd
      */
     public NewBookDialog(Department DepartmentToAdd) {
         this.DepartmentToAdd = DepartmentToAdd; //При создании диалога запоминаем отдел, куда нужно добавить книгу
         initComponents();
-        KeyAdapter Filter = new KeyAdapter() { 
-        @Override
-        public void keyTyped(KeyEvent e) {
-            char c = e.getKeyChar(); 
-            if ((!Character.isLetterOrDigit(c)) && (c != KeyEvent.VK_BACK_SPACE) 
-                    && (c != KeyEvent.VK_SPACE) && (c != KeyEvent.VK_COMMA) && (c != KeyEvent.VK_PERIOD) 
-                    && (c != KeyEvent.VK_COLON) && (c != KeyEvent.VK_MINUS)) { //Принимаем только буквы, цифры, пробел, бекспейс, запятую, точку, двоеточие, тире
-                e.consume(); 
+        KeyAdapter Filter = new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if ((!Character.isLetterOrDigit(c)) && (c != KeyEvent.VK_BACK_SPACE)
+                        && (c != KeyEvent.VK_SPACE) && (c != KeyEvent.VK_COMMA) && (c != KeyEvent.VK_PERIOD)
+                        && (c != KeyEvent.VK_COLON) && (c != KeyEvent.VK_MINUS)) { //Принимаем только буквы, цифры, пробел, бекспейс, запятую, точку, двоеточие, тире
+                    e.consume();
+                }
             }
-        }
-    };
+        };
         NameInput.addKeyListener(Filter);
         AuthorInput.addKeyListener(Filter);
     }
@@ -133,16 +134,17 @@ public class NewBookDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
     private void OkButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OkButtonActionPerformed
         // TODO add your handling code here:
         if (!NameInput.getText().isEmpty()) {
             if (!AuthorInput.getText().isEmpty()) { //Если поля называния и автора не пусты
                 if (!DepartmentToAdd.BookIsExists(NameInput.getText())) { //Если книги с таким названием нет в отделе
-                    DepartmentToAdd.AddBook(NameInput.getText(), AuthorInput.getText(), (int)QuantityInput.getValue()); //Добавляем книгу
+                    DepartmentToAdd.AddBook(NameInput.getText(), AuthorInput.getText(), (int) QuantityInput.getValue()); //Добавляем книгу
                     setVisible(false); //Закрываем диалог
                     dispose();
-                } else JOptionPane.showMessageDialog(null, "Такое название книги уже существует, введите другое", "Ошибка", JOptionPane.OK_OPTION);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Такое название книги уже существует, введите другое", "Ошибка", JOptionPane.OK_OPTION);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Введите автора книги", "Ошибка", JOptionPane.OK_OPTION);
             }
@@ -164,7 +166,6 @@ public class NewBookDialog extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AuthorInput;
     private javax.swing.JButton CancelButton;

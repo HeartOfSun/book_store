@@ -268,7 +268,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_RemoveDepartmentButtonActionPerformed
 
-
     private void AddDepartmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddDepartmentButtonActionPerformed
         // Обработчик кнопки "Добавить отдел"
         JDialog NewDepartment = new NewDepartmentDialog(Store); //Создаём диалог добавления отдела, передаём ему магазин, куда нужно добавить книгу

@@ -125,7 +125,6 @@ public class NewDepartmentDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_OKButtonActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CancelButton;
     private javax.swing.JTextField NameInput;

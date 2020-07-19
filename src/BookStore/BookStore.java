@@ -34,18 +34,23 @@ public class BookStore { //Книжный магазин
         Collator russianCollator = Collator.getInstance(new Locale("ru", "RU"));
         Department Temp = First;
         if (russianCollator.compare(Name, First.GetDepartmentName()) < 0) {
-        while (Temp.GetNext() != First) { 
-          Temp = Temp.GetNext();
+            while (Temp.GetNext() != First) {
+                Temp = Temp.GetNext();
+            }
+        } else {
+            do {
+                if (russianCollator.compare(Name, Temp.GetNext().GetDepartmentName()) < 0) {
+                    break;
+                }
+                Temp = Temp.GetNext();
+            } while (Temp.GetNext() != First);  //Проходим по списку в поисках элемента
         }
-    } else
-          do {
-            if (russianCollator.compare(Name, Temp.GetNext().GetDepartmentName()) < 0) break;
-            Temp = Temp.GetNext();
-        } while (Temp.GetNext() != First);  //Проходим по списку в поисках элемента
         Department TempNext = Temp.GetNext();
         Temp.SetNext(new Department(Name, DefaultDepartmentSize));
         Temp.GetNext().SetNext(TempNext);
-        if (TempNext == First && russianCollator.compare(Name, First.GetDepartmentName()) < 0) First = Temp.GetNext();
+        if (TempNext == First && russianCollator.compare(Name, First.GetDepartmentName()) < 0) {
+            First = Temp.GetNext();
+        }
         return Temp.GetNext(); //И возвращаем добавленный элемент
     }
 
@@ -68,7 +73,7 @@ public class BookStore { //Книжный магазин
                 Temp.SetNext(Temp.GetNext().GetNext()); //Удаляем отдел, установив предыдущему отделу указатель на следующий
                 return true;
             }
-            Temp = Temp.GetNext(); 
+            Temp = Temp.GetNext();
         } while (Temp != First);  //Проходим по списку в поисках элемента
         return false; //Дошли до конца списка, не встретив нужный отдел
     }
